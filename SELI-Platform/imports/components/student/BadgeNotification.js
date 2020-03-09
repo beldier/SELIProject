@@ -26,6 +26,31 @@ export class BadgeNotification extends React.Component  {
     this.setState({modalOpen:false});
   };
 
+  download = () => {
+    //let link =this.state.badgeInformation.image.link;
+    let link = 'http://localhost:3000/Users/beldier/seli/seliDocuments/badges/CourseFilesCollection/22h3xauxbrSPvt4ok/original/22h3xauxbrSPvt4ok.png';
+    // for non-IE
+    if (!window.ActiveXObject) {
+      var save = document.createElement('a');
+      save.href = link;
+      save.target = '_blank';
+      var filename = link.substring(this.state.badgeInformation.image.link.lastIndexOf('/')+1);
+      save.download = this.state.badgeInformation.image.name || filename;
+      if ( navigator.userAgent.toLowerCase().match(/(ipad|iphone|safari)/) && navigator.userAgent.search("Chrome") < 0) {
+        document.location = save.href;
+        // window event not working here
+      }else{
+        var evt = new MouseEvent('click', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': false
+        });
+        save.dispatchEvent(evt);
+        (window.URL || window.webkitURL).revokeObjectURL(save.href);
+      }
+    }
+    this.handleClose;
+  }
   render() {
       return (
         <div>
@@ -56,7 +81,7 @@ export class BadgeNotification extends React.Component  {
               <Button onClick={this.handleClose} color="primary">
                 Agree
               </Button>
-              <Button onClick={this.handleClose} color="primary">
+              <Button onClick={this.download} color="primary">
                 Download
               </Button>
             </DialogActions>

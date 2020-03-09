@@ -206,7 +206,6 @@ export default class BadgeRegistration extends React.Component {
                showErrorFunction={showError => this.showError = showError}
                badgeInformation={this.state.badgeInformation}
                language={this.state.language}
-
             />
              
              <DialogContent className="sign-content">

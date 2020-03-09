@@ -273,6 +273,16 @@ class Quiz extends React.Component {
     uploadInstance.start(); 
     console.log(file); 
     console.log(uploadInstance);
+    let currentId = uploadInstance.config.fileId+"";
+    let newName = uploadInstance.config.fileId+".jpg";
+    console.log(currentId);
+    console.log(newName);
+    let result = CourseFilesCollection.update({
+       _id : currentId } , 
+       {$set:  {name : newName}},
+       { upsert: true }
+       );
+    console.log(result);
     let today = new Date();
     let certificateInfo = {
       idStudent: user._id,
@@ -492,14 +502,6 @@ class Quiz extends React.Component {
     //console.log("vuelve ajsutar", this.state.selectedtime)
     return(
       <div className="quiz-dashboard-container">
-        <div>
-          {
-          this.state.badgeWin &&
-            <BadgeNotification 
-              list={this.state.badgeInformation}
-            />
-          }
-        </div>
         {
           Number.isNaN(this.state.selectedtime) || this.state.panelshow === 'stop' ?
           undefined
