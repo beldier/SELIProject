@@ -27,3 +27,29 @@
     max-height: calc(100% - 5vh);
     padding: 2.5vh 6vw;
 }
+.badge-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+.badge-item{
+    flex-direction: column;  
+}
+.badge-item{
+    width: 250px;
+    height: 250px;
+    border-radius: 40px;
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+    margin: 3px;
+    margin-top: 20px;
+}
+.badge-item:hover {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+      -5px -5px 30px 15px rgba(0,0,0,0.22);
+  }

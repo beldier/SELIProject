@@ -37,6 +37,7 @@ Session.set("verifyPass",false);
 export default class AppBar extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
       open: false,
       openDialog: false,

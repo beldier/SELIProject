@@ -20,15 +20,26 @@ export class BadgeNotification extends React.Component  {
           modalOpen: this.props.modalOpen,
           badgeInformation: this.props.badgeInformation,
       }
+      // this.saveUserBadge();
   }
+
+  // saveUserBadge = () => {
+  //   Meteor.call('addBadgeStudent',
+  //     Meteor.userId(),
+  //     this.props.badgeInformation,
+  //     (error, response) =>  {}
+  //   )
+  // };
 
   handleClose = () => {
     this.setState({modalOpen:false});
   };
 
+
+
   download = () => {
     //let link =this.state.badgeInformation.image.link;
-    let link = 'http://localhost:3000/Users/beldier/seli/seliDocuments/badges/CourseFilesCollection/22h3xauxbrSPvt4ok/original/22h3xauxbrSPvt4ok.png';
+    let link = 'http://localhost:3000/Users/beldier/seli/seliDocuments/badges/CourseFilesCollection/mHcANYqjs3n8osYCL/original/mHcANYqjs3n8osYCL.png';
     // for non-IE
     if (!window.ActiveXObject) {
       var save = document.createElement('a');

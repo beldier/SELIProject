@@ -30,7 +30,7 @@ import CourseFilesCollection from '../../lib/CourseFilesCollection';
 import TitleButton from './TitleButton';
 
 var bakery=require('openbadges-bakery-v2');
-export default class BadgeRegistration extends React.Component {
+export default class   extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,7 +93,6 @@ export default class BadgeRegistration extends React.Component {
             showErrorFunction={showError => this.showError = showError}
             badgeInformation={this.state.badgeInformation}
             language={this.state.language}
-            type={this.props.location.type}
           />,
         ],
       })

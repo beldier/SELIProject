@@ -177,3 +177,15 @@ Meteor.methods({
     return true;
   }
 });
+
+Meteor.methods({
+  'addBadgeStudent'(_id, badgeInformation){
+    Meteor.users.update(
+      { _id: _id },
+      { $push: {
+        'profile.badge': badgeInformation,
+      }}
+    )
+    return true;
+  }
+});

@@ -48,6 +48,7 @@ class Quiz extends React.Component {
   _isMounted = false;
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       selected: 0,
       answers: [], //should be load at start of the componen
@@ -269,7 +270,48 @@ class Quiz extends React.Component {
       streams: 'dynamic',
       chunkSize: 'dynamic',
       allowWebWorkers: true // If you see issues with uploads, change this to false
-    }, false);
+    }, false )
+
+    // uploadInstance.then().catch
+    
+    // (error, id) => {
+
+    //   if(error){
+
+    //     console.error("Error al resolver "+error)
+    //   } else {
+    //     console.log("el id es: "+ id)
+    //   }
+
+    // });
+
+    // let xxx = new Promise((resolve, reject) => {
+    //   CourseFilesCollection.insert({
+    //     file: file,
+    //     meta: {
+    //         locator: '',
+    //         dateAdded: new Date(),
+    //         isFavorite: false,
+    //         usedInCourse: false,
+    //         userId: '', 
+    //         buffer: '',
+    //       //userId: Meteor.userId() // Optional, used to check on server for file tampering
+    //     },
+    //     streams: 'dynamic',
+    //     chunkSize: 'dynamic',
+    //     allowWebWorkers: true // If you see issues with uploads, change this to false
+    //   }, (error, id) => {
+    //     if(error){
+    //       reject(error)
+    //     }
+    //     else{
+    //       resolve(id)
+    //     }
+    //   });
+    // })
+    // .then(id => console.log("este es el id"+id))
+    // .catch(error => console.error("error de la promesa"+error))
+
     uploadInstance.start(); 
     console.log(file); 
     console.log(uploadInstance);
@@ -279,9 +321,9 @@ class Quiz extends React.Component {
     console.log(newName);
     let result = CourseFilesCollection.update({
        _id : currentId } , 
-       {$set:  {name : newName}},
+       {$set:  {name : "LOL"}},
        { upsert: true }
-       );
+    );
     console.log(result);
     let today = new Date();
     let certificateInfo = {
@@ -297,8 +339,18 @@ class Quiz extends React.Component {
       this.setState({badgeWin:true});
     }
     console.log(this.state);
-
+    this.saveUserBadge();
   }
+  saveUserBadge = () => {
+    console.log('saving user badge in collection');
+    Meteor.call('addBadgeStudent',
+      Meteor.userId(),
+      this.props.quiz.attributes.badgeInformation,
+      (error, response) =>  {}
+    )
+  };
+
+
   async issueBadge(image){
     let buffer = CourseFilesCollection.findOne({_id: image._id });
     buffer = buffer.meta.buffer;

@@ -24,7 +24,7 @@ import SubscribedCourses from '../components/student/SubscribedCourses';
 import Course from '../components/student/Course';
 import MyCertificates from '../components/student/MyCertificates';
 import DashboardComponent from '../components/dashboard/dashboard';
-
+import BadgeVerification from './BadgeRegistration';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from '../style/theme';
 import InfoIcon from '@material-ui/icons/Info';
@@ -46,6 +46,7 @@ import spanish from '../../lib/translation/spanish';
 import portuguese from '../../lib/translation/portuguese';
 import turkish from '../../lib/translation/turkish';
 import WarningIcon from '@material-ui/icons/Warning';
+import BadgeCollection from '../components/student/BadgeCollection';
 
 export default class User extends React.Component {
   constructor(props) {
@@ -161,6 +162,10 @@ export default class User extends React.Component {
       if (action === 'dashboard'){
         action = () => this.showComponent('dashboard');
       }
+      if (action === 'badgeVerification'){
+        action = () => this.showComponent('badgeVerification');
+      }
+
 
       this.setState({
         showControlMessage: show,
@@ -621,6 +626,32 @@ export default class User extends React.Component {
                       this.state.component === 'dashboard' ?
                       <DashboardComponent/>
                     :
+                      undefined
+                    }
+                     {
+                      this.state.component === 'badgeVerification' ?
+                      <BadgeVerification/>
+                      :
+                      undefined
+                    }
+                    {
+                      this.state.component === 'badgeCollection' ?
+                      <BadgeCollection/>
+                      :
+                      undefined
+                    }
+                    {
+                      this.state.component === 'certificates' ?
+                        <MyCertificates
+                          user={this.state.user}
+                          language={this.state.language}
+                          disabled={this.state.showLoadingMessage}
+                          getSubscribedCourses={subscribedCourses => this.getSubscribedCourses = subscribedCourses}
+                          handleControlMessage={this.handleControlMessage.bind(this)}
+                          handleClickCourse={this.handleClickCourse.bind(this)}
+                          showComponent={this.showComponent.bind(this)}
+                        />
+                      :
                       undefined
                     }
                     {

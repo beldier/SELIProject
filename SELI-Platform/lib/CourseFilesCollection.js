@@ -1,8 +1,8 @@
 import { FilesCollection } from 'meteor/ostrio:files';
 
 const CourseFilesCollection = new FilesCollection({
-  storagePath: '/opt/Seli/UploadFiles',
-  downloadRoute: '/opt/Seli/UploadFiles',
+  storagePath: '/Users/beldier/seli/seliDocuments/badges',
+  downloadRoute: '/Users/beldier/seli/seliDocuments/badges',
   collectionName: 'CourseFilesCollection',
   permissions: 0o755,
   allowClientCode: false,
